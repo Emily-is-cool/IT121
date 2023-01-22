@@ -1,0 +1,24 @@
+
+
+<HTML>
+    <body>
+        <script>
+            var grades = "jim|25, sue|32, mary|34, ann|22, ted|28, frank|15, lisa|19, mike|30, ahn|26, vishaya|27";
+            //change string to array
+            const gradeArray = grades.split(", ");
+            console.log(gradeArray);
+            //split gradeArray into studentGrade
+            //display each student name and score
+            for (let i=0;i < gradeArray.length; i++) {
+               const studentGrade = gradeArray[i].split("|");
+               document.write(studentGrade[0] + " - score " + studentGrade[1]);
+               document.write("<br>");
+            }
+//names.sort() will sort alphabetically
+//capitalize the first letter of student name
+//display total # of students,
+//display the lowest, highest, and average scores
+
+        </script>
+    </body>
+</HTML>
