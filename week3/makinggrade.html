@@ -5,9 +5,14 @@
         <script>
             var grades = "jim|25, sue|32, mary|34, ann|22, ted|28, frank|15, lisa|19, mike|30, ahn|26, vishaya|27";
             //script converts grades string to an Array of students
+            //newGrades = grades.sort(a,b);
             const gradeArray = grades.split(", ");
-            studentCount = 0;
-            gradeTally = 0
+            //variables to be used in calculations
+            let studentCount = 0;
+            let gradeTally = 0
+            let lowestG = 50
+            let highestG =  0
+
             for (let i=0;i < gradeArray.length; i++) {
                 //split gradeArray into studentGrade
                 studentGrade = gradeArray[i].split("|");
@@ -18,12 +23,25 @@
                 }
                 //script displays name and grade for each student with first letter of name capitalized
                 document.write(studentGrade[0] + " - score " + studentGrade[1] +"<br>");
+                //counters 
                 studentCount = studentCount + 1;  
-                gradeTally = gradeTally + studentGrade[1]
+                gradeTally = gradeTally + parseInt(studentGrade[1]);
+
+                if (studentGrade[1] > highestG) {
+                    highestG = studentGrade[1];
+                }
+                if (studentGrade[1] < lowestG) {
+                    lowestG = studentGrade[1];
+                }
             }
             //display total # of students
-            document.write("Number of Students: " + studentCount + "<br>");
-            document.write("Average Grade: " + gradeTally/studentCount + "<br>")
+            document.write("<br>" + "Number of Students: " + studentCount + "<br>");
+            //display average grade
+            document.write("The Average Grade is: " + gradeTally / studentCount + "<br>")
+            //display lowest grade
+            document.write("The Lowest Grade is: " + lowestG + "<br>")
+            //display highest grade
+            document.write("The Highest Grade is: " + highestG + "<br>")
 
 
 //display the lowest, highest, and average scores
