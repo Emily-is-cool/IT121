@@ -4,19 +4,28 @@
     <body>
         <script>
             var grades = "jim|25, sue|32, mary|34, ann|22, ted|28, frank|15, lisa|19, mike|30, ahn|26, vishaya|27";
-            //change string to array
+            //script converts grades string to an Array of students
             const gradeArray = grades.split(", ");
-            console.log(gradeArray);
-            //split gradeArray into studentGrade
-            //display each student name and score
+            studentCount = 0;
+            gradeTally = 0
             for (let i=0;i < gradeArray.length; i++) {
-               const studentGrade = gradeArray[i].split("|");
-               document.write(studentGrade[0] + " - score " + studentGrade[1]);
-               document.write("<br>");
+                //split gradeArray into studentGrade
+                studentGrade = gradeArray[i].split("|");
+                //capitalize first letters of names
+                for (let i=0; i < studentGrade.length; i++)  {
+                    studentGrade[i] = studentGrade[i][0].toUpperCase() + studentGrade[i].substring(1);
+                    
+                }
+                //script displays name and grade for each student with first letter of name capitalized
+                document.write(studentGrade[0] + " - score " + studentGrade[1] +"<br>");
+                studentCount = studentCount + 1;  
+                gradeTally = gradeTally + studentGrade[1]
             }
-//names.sort() will sort alphabetically
-//capitalize the first letter of student name
-//display total # of students,
+            //display total # of students
+            document.write("Number of Students: " + studentCount + "<br>");
+            document.write("Average Grade: " + gradeTally/studentCount + "<br>")
+
+
 //display the lowest, highest, and average scores
 
         </script>
