@@ -22,19 +22,20 @@
 // add validatePassword function here
 //String includes() 
 //password.charCodeAt() // password.length > 7
-
+//ascii 0-9 [48 – 57] lowercase 97 to 122, uppercase 65 to 90
 
 function validatePassword(password) {
-  var password = myForm.password.value;
-  var paswd =  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,25}$/;
+  let paswd =  /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{7,25}$/;
+   
   
-  if (password.value.match(paswd)){
+  if (password.match(paswd)) {
     return true;
   }
   else {
     document.write("That's a terrible password, try again");
     return false;
   }
+  
 }
 
 const validateForm = (myForm) => {
@@ -49,10 +50,10 @@ const validateForm = (myForm) => {
  
   else  {          // update 'message' DIV with appropriate wording
   $("#message").html("Hello " + firstName + "! Welcome back.");
-  return true;
+  //return true;
   }
   // Form validation code goes here
-  //validatePassword(password);
+  validatePassword(password);
 
   return false; // prevent page reload
 }
