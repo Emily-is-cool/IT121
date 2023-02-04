@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+
+<h1>Functions & validation</h1>
+
+<form id="form1" action="#" onsubmit="return validateForm(this);">
+  first name: <input type="text" name="firstname"><br>
+  last name: <input type="text" name="lastname"><br>
+  password: <input type="text" name="password"><br>
+
+  <button >Check</button>
+</form>
+
+<hr><div id="message"></div>
+
+<script>
+
+// add validatePassword function here
+//String includes() 
+//password.charCodeAt() // password.length > 7
+
+
+function validatePassword(password) {
+  var password = myForm.password.value;
+  var paswd =  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,25}$/;
+  
+  if (password.value.match(paswd)){
+    return true;
+  }
+  else {
+    document.write("That's a terrible password, try again");
+    return false;
+  }
+}
+
+const validateForm = (myForm) => {
+//define variables
+  var password = myForm.password.value;
+  var firstName = myForm.firstname.value; // get text of firstname field
+  var lastName = myForm.lastname.value;
+  if ((firstName == "") || (lastName == "")) {
+    $("#message").html("First name and last name must be filled out");
+    return false;
+  }
+ 
+  else  {          // update 'message' DIV with appropriate wording
+  $("#message").html("Hello " + firstName + "! Welcome back.");
+  return true;
+  }
+  // Form validation code goes here
+  //validatePassword(password);
+
+  return false; // prevent page reload
+}
+
+</script>
+
+</body>
+</html>
