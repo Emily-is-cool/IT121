@@ -25,30 +25,31 @@ function makeDeck() {
       }
       cardDeck.push(card);
     }
-    return cardDeck;
+    
   }
- 
+  return cardDeck;
 }
-//let newDeck = makeDeck();
+
 //console.log(newDeck);
 const dealHand = () => {
 //call makeDeck
 let deck = makeDeck();
-  let card_hand = new Array();
-  for (let k = 0; k < 5; k++) {
-    let oneCard = Math.floor(Math.random() * deck.length)
-    card_hand.push(oneCard);
-    document.write(card_hand);
+let hand = new Array();
+for (let k = 0; k < 5; k++) {
+    let cardIndex = Math.floor(Math.random() * deck.length);
+    let oneCard = deck.at(cardIndex);
+    hand.push(oneCard);
+    }
+//display cards
+let showContent = " "
+for (let i = 0; i < hand.length; i++) {
+  showContent = showContent + hand[i].Value + " " + hand[i].Suit + "<br>";
 }
 
-//pull 5 randos 
-//Math.floor(Math.random() * 52); 
-//display cards
-
-  /* code to deal a card hand goes here */
+//console.log(hand)
 
   // update 'card_hand' DIV with appropriate information
-  $("#card_hand").html("hand");
+  $("#card_hand").html(showContent);
 
   return false; // prevent page reload
 }
