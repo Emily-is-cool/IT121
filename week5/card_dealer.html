@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+
+<h1>Robo Dealer</h1>
+
+  <button onclick="dealHand();">Deal Hand</button>
+
+<hr><div id="card_hand"></div>
+
+<script>
+let suits = ["Clubs", "Diamnonds", "Hearts", "Spades"]
+let values = ["Ace","2", "3", "4",  "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
+
+function makeDeck() {
+  let cardDeck = new Array();
+  for (let i=0; i < suits.length; i++){
+    for (let j = 0; j < values.length; j++) {
+      let card = {
+        Value: values[j],
+        Suit: suits[i],
+      }
+      cardDeck.push(card);
+    }
+  }
+  return cardDeck;
+}
+//let newDeck = makeDeck();
+//console.log(newDeck);
+const dealHand = () => {
+//call makeDeck
+let deck = makeDeck;
+
+//pull 5 randos 
+//display cards
+
+  /* code to deal a card hand goes here */
+
+  // update 'card_hand' DIV with appropriate information
+  $("#card_hand").html("Button clicked");
+
+  return false; // prevent page reload
+}
+
+</script>
+
+</body>
+</html>
