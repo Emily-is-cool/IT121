@@ -39,7 +39,7 @@ for (let k = 0; k < 5; k++) {
     let cardIndex = Math.floor(Math.random() * deck.length);
     let oneCard = deck.at(cardIndex);
     hand.push(oneCard);
-    deck.splice(oneCard, 1);
+    deck.splice(oneCard, 1); //preventing duplicates
     }
 //display cards
 let showContent = " "
