@@ -17,18 +17,17 @@
         td {
             width: 20%;
         }
-        button {
+       /* button {
             background-color: rgb(64, 7, 107);
-            border: 2px;
             border-radius: 20%;
             font-family: sans-serif;
             color:rgb(230, 255, 205);
             font-size: 16px;
-            padding:10px;
             height: 100px;
             width:100px;
-            margin: 20px;
-        }
+            margin: 10em;
+            cursor: pointer;
+        } */
     </style>
 
     <body>
@@ -68,29 +67,20 @@
         $(document).ready(function(){
 
         /*
-            
-        - add click handler to show only rows matching selected 'house'. Enable buttons to call this handler. 
-        
+       
         - add click handler to reset table 
         */
         $("#reset").click(function(){
             window.location.reload();
         })
-       // - add a button for each 'house' value
-
-        $("<button id = 'Gryffindor'>Gryffindor</button>").appendTo("body");
-        $("<button id = 'Hufflepuff'>Hufflepuff</button>").appendTo("body");
-        $("<button id = 'Slytherin'>Slytherin</button>").appendTo("body");
-        $("<button id = 'Ravenclaw'>Ravenclaw</button>").appendTo("body");
-        //const button = document.createElement('button');
-
-
+     
         // create table row 
         let characterTable = document.getElementById("potterTime");
         
         for (let i = 0; i < characters.length; i++) {
         //- add table row for each character 
             characterRow = characterTable.insertRow(-1);
+        
             let name = characterRow.insertCell(0);
             let role = characterRow.insertCell(1);
             let house = characterRow.insertCell(2);
@@ -101,20 +91,33 @@
             house.innerHTML = characters[i].house;
             gender.innerHTML = characters[i].gender;
             alignment.innerHTML = characters[i].alignment;
+         
             
+       
         }
-        //add click handler to show only rows matching selected 'house'. Enable buttons to call this handler. 
-        griff = $("tr td[Gryffindor]").addClass("griff");
-        console.log(griff);
-        
-        $("#Gryffindor").click(function() {
-            $(".griff").hide();
-        })
-        
-        //- set visible rows to alternating background color
-        
+      // - add a button for each 'house' value
+        var houses = ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"];
+        function makeButtons(b) {
+            for (let i=0; i<houses.length; i++) {
+                $('body').append('<button id =' + b[i] + ">" + b[i] + '</button>');
+            }
+        }
+        makeButtons(houses);
+
+              //- set visible rows to alternating background color
         $('tr:even').css("background-color","#94ae94");
 
+        //- add click handler to show only rows matching selected 'house'. Enable buttons to call this handler. 
+        //document.getElementById("button").onclick = hider();
+        $("#Gryffindor").click(hider);
+        $("#Hufflepuff").click(hider);
+        $("#Ravenclaw").click(hider);
+        $("#Slytherin").click(hider);
+        
+        function hider() {
+           // let hidden = $("tr").eq(2);
+           console.log(this.id);
+        }
 
         });
         
