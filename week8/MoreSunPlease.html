@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <title>More Sun Please</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    </head>
+    <body>
+        <h1>Check the forecast in your area</h1>
+        <p>Enter your city and two digit state abbreviation below</p>
+        
+        <form id="form1" action="#" onsubmit="//">
+            City: <input type="text" name="city">
+            State: <input type="text" name="state">         
+            <button >Check</button>
+        </form>
+        <script>
+            var apiKey = "8e5a0b1e2e3d352cb7303101593a1f8b";
+            var city = form1.city.value;
+            var state = form1.state.value;
+            let queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "," + state + "&cnt=840" + "&units=imperial" + "&APPID=" + apiKey;
+            
+            fetch(queryURL)
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+//https://openweathermap.org/forecast5   // "&cnt=3" US USA 840
+        </script>
+    </body>
+</html>
