@@ -6,23 +6,56 @@
     </head>
     <body>
         <h1>Check the forecast in your area</h1>
-        <p>Enter your city and two digit state abbreviation below</p>
+        <p>Enter your city:</p>
         
-        <form id="form1" action="#" onsubmit="//">
+        <form id="form1" action="#" onsubmit="checkWeather()">
             City: <input type="text" name="city">
-            State: <input type="text" name="state">         
             <button >Check</button>
         </form>
         <script>
-            var apiKey = "8e5a0b1e2e3d352cb7303101593a1f8b";
-            var city = form1.city.value;
-            var state = form1.state.value;
-            let queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "," + state + "&cnt=840" + "&units=imperial" + "&APPID=" + apiKey;
+            //console.log(city + state)
+            //var apiKey = "8e5a0b1e2e3d352cb7303101593a1f8b";
+            var apiKey = "d09708f81ff13711278d283901a9ce34"
+            async function checkWeather() {
+                validateForm()
+                callAPI()
+            }
             
-            fetch(queryURL)
-                .then((response) => response.json())
-                .then((data) => console.log(data))
-//https://openweathermap.org/forecast5   // "&cnt=3" US USA 840
+            function validateForm() {
+                var city = form1.city.value;
+                if (city == "") {
+                    alert("Please enter a city")
+                    
+                }
+                let queryURL = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&cnt=5&APPID=" + apiKey;
+                console.log(city);
+                callAPI(queryURL);
+                //return false;
+            }
+            function callAPI(url) {
+              fetch(url)
+                  .then((response) => response.json())
+                  .then(function(data) {
+                    console.log(data);
+                    //test(data);
+                  }) 
+                  
+                  .catch(function (err) {
+                    console.log(err);
+                  })                         
+            };
+            // // function fiveDay(days) {
+            // //     let lat = data.coord.lat;
+            // //     let lon = data.coord.lon;
+            // //     let fiveUrl = "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={apiKey}"
+            // // }
+            // function test(data) {
+            //   console.log(data.coord) 
+            // }
+
+           //console.log(queryURL)
+//https://openweathermap.org/forecast5   // "&cnt=3" US USA 840 http://openweathermap.org/forecast5
+//https://api.openweathermap.org/data/2.5/forecast/daily?q=seattle&cnt=5&APPID=d09708f81ff13711278d283901a9ce34
         </script>
     </body>
 </html>
