@@ -19,7 +19,7 @@ function makeDeck() {
   let cardDeck = new Array();
   for (let i=0; i < suits.length; i++){
     for (let j = 0; j < values.length; j++) {
-      let card = {
+      const card = {
         Value: values[j],
         Suit: suits[i],
       }
