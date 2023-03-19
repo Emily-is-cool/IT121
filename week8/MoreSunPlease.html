@@ -12,6 +12,12 @@
             City: <input type="text" name="city">
             <button >Check</button>
         </form>
+        <div id="showWeather">
+            <h2>Five day forecast</h2>
+            <div id="forecast">
+
+            </div>
+        </div>
         <script>
             //console.log(city + state)
             //var apiKey = "8e5a0b1e2e3d352cb7303101593a1f8b";
@@ -19,6 +25,8 @@
             async function checkWeather() {
                 validateForm()
                 callAPI()
+                //fiveDay()
+                console.log(forecast_date);
             }
             
             function validateForm() {
@@ -37,6 +45,7 @@
                   .then((response) => response.json())
                   .then(function(data) {
                     console.log(data);
+                    fiveDay(data);
                     //test(data);
                   }) 
                   
@@ -44,11 +53,41 @@
                     console.log(err);
                   })                         
             };
-            // // function fiveDay(days) {
-            // //     let lat = data.coord.lat;
-            // //     let lon = data.coord.lon;
-            // //     let fiveUrl = "api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={apiKey}"
-            // // }
+            function fiveDay(data) {
+                for (let i=0; i < 5; i++) {
+                    let div = forecast.appendChild(document.createElement("div"));
+                    let date = div.appendChild(document.createElement("p"));
+                    let minTemp = div.appendChild(document.createElement("p"));
+                    let maxTemp = div.appendChild(document.createElement("p"));
+                    let humidity = div.appendChild(document.createElement("p"));
+                    let desc = div.appendChild(document.createElement("p"));
+                    let icon = div.appendChild(document.createElement("img"));
+
+                    date.textContent = formatDate(data.list[i].dt);
+                    minTemp.textContent = data.list[i].temp.min;
+                    maxTemp.textContent = data.list[i].temp.max;
+                    humidity.textContent = data.list[i].humidity;
+                    desc.textContent = data.list[i].weather[0].desc;
+
+                    iconID = data.list[i].weather[0].icon;
+                    iconURL = "https://openweathermap.org/img/w/" + iconID + ".png";
+                    icon.setAttribute('src', iconURL);
+
+
+                    // let unix_timestamp = data.list[i].dt;
+                    // let forecast_date = new Date(unix_timestamp * 1000);
+                    // document.getElementById('showWeather').append(forecast_date);
+                    
+                    
+                }
+            }
+            function formatDate(date) {
+                let smallDate = new Date(date *  1000);
+                let weekday = smallDate.toString().substring(0,3);
+
+                return weekday + " " + smallDate.toLocaleDateString('en-US');
+            }
+            
             // function test(data) {
             //   console.log(data.coord) 
             // }
