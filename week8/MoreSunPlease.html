@@ -25,8 +25,7 @@
             async function checkWeather() {
                 validateForm()
                 callAPI()
-                //fiveDay()
-                console.log(forecast_date);
+   
             }
             
             function validateForm() {
@@ -49,25 +48,27 @@
                     //test(data);
                   }) 
                   
-                  .catch(function (err) {
-                    console.log(err);
+                  .catch(function(err) {
+                    document.getElementById("forecast").innerHTML = err.message;
                   })                         
             };
             function fiveDay(data) {
                 for (let i=0; i < 5; i++) {
                     let div = forecast.appendChild(document.createElement("div"));
+                    let icon = div.appendChild(document.createElement("img"));
                     let date = div.appendChild(document.createElement("p"));
+                    
                     let minTemp = div.appendChild(document.createElement("p"));
                     let maxTemp = div.appendChild(document.createElement("p"));
                     let humidity = div.appendChild(document.createElement("p"));
                     let desc = div.appendChild(document.createElement("p"));
-                    let icon = div.appendChild(document.createElement("img"));
+                    
 
                     date.textContent = formatDate(data.list[i].dt);
-                    minTemp.textContent = data.list[i].temp.min;
-                    maxTemp.textContent = data.list[i].temp.max;
-                    humidity.textContent = data.list[i].humidity;
-                    desc.textContent = data.list[i].weather[0].desc;
+                    minTemp.textContent = "Low: " + formatTemp(data.list[i].temp.min);
+                    maxTemp.textContent = "High: " + formatTemp(data.list[i].temp.max);
+                    humidity.textContent = "Humidity: " + data.list[i].humidity + "%";
+                    desc.textContent = "Forecast: " + data.list[i].weather[0].description;
 
                     iconID = data.list[i].weather[0].icon;
                     iconURL = "https://openweathermap.org/img/w/" + iconID + ".png";
@@ -87,7 +88,14 @@
 
                 return weekday + " " + smallDate.toLocaleDateString('en-US');
             }
-            
+            function formatTemp(value) {
+                tempF = (((Number(value) - 273.15)*9)/5) + 32;
+                return tempF.toFixed(2) + " degrees F";
+            }
+            function formatHumidity() {
+                return "Humidity:" + humidity + '%';
+            }
+
             // function test(data) {
             //   console.log(data.coord) 
             // }
